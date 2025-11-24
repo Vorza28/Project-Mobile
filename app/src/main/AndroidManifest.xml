@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Onlineshop">
         <activity
-            android:name=".DeskripsiActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
