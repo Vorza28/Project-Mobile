@@ -15,12 +15,13 @@ class Keranjang : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // dummy data
+        // Tambahkan dummy data
         listProduk.add(ModelKeranjang(R.drawable.sample1, "Brand", "Nama produk", "Rp.10.000"))
         listProduk.add(ModelKeranjang(R.drawable.sample2, "Brand", "Nama produk", "Rp.10.000"))
         listProduk.add(ModelKeranjang(R.drawable.sample3, "Brand", "Nama produk", "Rp.10.000"))
 
         adapterKeranjang = AdapterKeranjang(listProduk)
+
         binding.rvKeranjang.layoutManager = LinearLayoutManager(requireContext())
         binding.rvKeranjang.adapter = adapterKeranjang
 
