@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Kontainer Utama yang Dapat Digulir (jika daftar produk banyak) -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <!-- Search Bar yang berfungsi sebagai input pencarian utama di Discover -->
+            <EditText
+                android:id="@+id/discover_search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:padding="10dp"
+                android:hint="Cari produk, kategori, atau toko..."
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="8dp"
+                android:background="@drawable/rounded_search_background"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Judul Halaman / Hasil Pencarian -->
+            <TextView
+                android:id="@+id/discover_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Produk Populer"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/discover_search_bar" />
+
+            <!-- RecyclerView Produk dalam Grid 2 Kolom (mirip dengan produk Home) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/discover_products_grid_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingBottom="80dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                app:layout_constraintTop_toBottomOf="@id/discover_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_product_grid" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
