@@ -13,7 +13,6 @@ class KeranjangFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Ganti dengan layout fragment_keranjang.xml Anda
         return inflater.inflate(R.layout.fragment_keranjang, container, false)
     }
 }

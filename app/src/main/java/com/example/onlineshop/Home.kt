@@ -13,7 +13,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Ganti dengan layout fragment_home.xml Anda
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
