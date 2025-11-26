@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <!-- Fragment Home (sesuai ID: nav_home di bottom_nav_menu) -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.onlineshop.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <!-- Fragment Discover (sesuai ID: nav_discover di bottom_nav_menu) -->
+    <fragment
+        android:id="@+id/nav_discover"
+        android:name="com.example.onlineshop.DiscoverFragment"
+        android:label="Discover"
+        tools:layout="@layout/fragment_discover" />
+
+    <!-- Fragment Keranjang (sesuai ID: nav_cart di bottom_nav_menu) -->
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.example.onlineshop.KeranjangFragment"
+        android:label="Keranjang"
+        tools:layout="@layout/fragment_keranjang" />
+
+    <!-- Fragment Notifications (sesuai ID: nav_notifications di bottom_nav_menu) -->
+    <fragment
+        android:id="@+id/nav_notifications"
+        android:name="com.example.onlineshop.NotificationsFragment"
+        android:label="Notifikasi"
+        tools:layout="@layout/fragment_notifications" />
+
+    <!-- Fragment Profile (sesuai ID: nav_profile di bottom_nav_menu) -->
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.onlineshop.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

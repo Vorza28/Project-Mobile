@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-// Fragment untuk menu Keranjang
-class KeranjangFragment : Fragment() {
+// Fragment untuk menu Profil
+class ProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_keranjang, container, false)
+        // Ganti dengan layout fragment_profile.xml Anda
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 }
