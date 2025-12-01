@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order"
+    app:startDestination="@id/deskripsiFragment">
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.onlineshop.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" />
+    <fragment
+        android:id="@+id/deskripsiFragment"
+        android:name="com.example.onlineshop.DeskripsiFragment"
+        android:label="fragment_deskripsi"
+        tools:layout="@layout/fragment_deskripsi" />
+</navigation>
