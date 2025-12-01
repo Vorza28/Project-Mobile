@@ -9,9 +9,16 @@
         android:name="com.example.onlineshop.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" />
+
+
     <fragment
         android:id="@+id/deskripsiFragment"
         android:name="com.example.onlineshop.DeskripsiFragment"
         android:label="fragment_deskripsi"
         tools:layout="@layout/fragment_deskripsi" />
+    <fragment
+        android:id="@+id/paymentStatusFragment"
+        android:name="com.example.onlineshop.StatusFragment"
+        android:label="PaymentStatusFragment"
+        tools:layout="@layout/fragment_status_pembayaran"/>
 </navigation>

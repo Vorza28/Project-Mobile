@@ -12,6 +12,7 @@
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
+
     <!-- Fragment Discover (sesuai ID: nav_discover di bottom_nav_menu) -->
     <fragment
         android:id="@+id/nav_discover"
@@ -24,7 +25,13 @@
         android:id="@+id/nav_cart"
         android:name="com.example.onlineshop.KeranjangFragment"
         android:label="Keranjang"
-        tools:layout="@layout/fragment_keranjang" />
+        tools:layout="@layout/fragment_keranjang">
+
+        <action
+            android:id="@+id/action_keranjang"
+            app:destination="@+id/checkoutFragment"/>
+
+    </fragment>
 
     <!-- Fragment Notifications (sesuai ID: nav_notifications di bottom_nav_menu) -->
     <fragment
