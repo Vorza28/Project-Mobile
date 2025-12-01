@@ -14,4 +14,9 @@
         android:name="com.example.onlineshop.DeskripsiFragment"
         android:label="fragment_deskripsi"
         tools:layout="@layout/fragment_deskripsi" />
+    <fragment
+        android:id="@+id/paymentStatusFragment"
+        android:name="com.example.onlineshop.StatusFragment"
+        android:label="PaymentStatusFragment"
+        tools:layout="@layout/fragment_status_pembayaran"/>
 </navigation>
