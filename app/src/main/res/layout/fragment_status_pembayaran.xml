@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardCornerRadius="16dp"
+            android:background="#FFFFFF"
             app:cardElevation="4dp">
 
             <LinearLayout
@@ -40,7 +41,7 @@
                     android:id="@+id/tvPaymentStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Transaksi Berhasil"
+                    android:text="Menunggu Pembayaran"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#000000" />
@@ -49,7 +50,7 @@
                     android:id="@+id/tvPaymentDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Selamat pesanan anda sudah berhasil."
+                    android:text="Silakan selesaikan pembayaran untuk melanjutkan."
                     android:layout_marginTop="8dp"
                     android:textColor="#6D6D6D" />
 
@@ -61,8 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="16dp">
+            android:background="#FFFFFF"
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,44 +104,7 @@
                     android:layout_marginTop="6dp" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-
-        <!-- ================================ -->
-        <!-- BAGIAN BARANG YANG DIBELI        -->
-        <!-- ================================ -->
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/BarangDibeli"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Barang yang Dibeli"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:layout_marginBottom="12dp" />
-
-                <!-- Container untuk list barang (diisi dari Kotlin) -->
-                <LinearLayout
-                    android:id="@+id/containerBarangDibeli"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"/>
-
-            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>

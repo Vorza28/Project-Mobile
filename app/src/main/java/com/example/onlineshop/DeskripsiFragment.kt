@@ -27,15 +27,14 @@ class DeskripsiFragment : Fragment() {
         val buttonBayar = view.findViewById<Button>(R.id.buttonBayar)
 
 
-        buttonKeranjang.setOnClickListener {
-            findNavController().navigate(R.id.deskripsiFragment2 )
+        buttonBayar.setOnClickListener {
+            findNavController().navigate(R.id.checkoutFragment )
         }
 
+        buttonKeranjang.setOnClickListener {
+            findNavController().navigate(R.id.nav_cart)
+        }
 
-            buttonBayar.setOnClickListener {
-                val intent = Intent(requireContext(), CheckoutActivity::class.java)
-                startActivity(intent)
-            }
 
     }
 }
