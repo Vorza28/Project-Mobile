@@ -15,6 +15,7 @@ class KeranjangFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        return inflater.inflate(R.layout.fragment_keranjang, container, false)
 
         val view = inflater.inflate(R.layout.fragment_keranjang, container, false)
         val buttoncheckout = view.findViewById<Button>(R.id.btnBayar)
@@ -25,5 +26,4 @@ class KeranjangFragment : Fragment() {
         // Inflate the layout for this fragment
         return view
     }
-
 }
