@@ -15,13 +15,13 @@ class KeranjangFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_keranjang, container, false)
+
 
         val view = inflater.inflate(R.layout.fragment_keranjang, container, false)
         val buttoncheckout = view.findViewById<Button>(R.id.btnBayar)
 
         buttoncheckout.setOnClickListener {
-            findNavController().navigate(R.id.action_keranjang)
+            findNavController().navigate(R.id.checkoutFragment)
         }
         // Inflate the layout for this fragment
         return view
