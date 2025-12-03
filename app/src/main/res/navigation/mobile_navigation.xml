@@ -27,12 +27,6 @@
         android:label="Keranjang"
         tools:layout="@layout/fragment_keranjang"/>
 
-<!--        <action-->
-<!--            android:id="@+id/action_keranjang"-->
-<!--            app:destination="@+id/checkoutFragment"/>-->
-
-
-
     <!-- Fragment Notifications (sesuai ID: nav_notifications di bottom_nav_menu) -->
     <fragment
         android:id="@+id/nav_notifications"

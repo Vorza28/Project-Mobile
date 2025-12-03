@@ -15,8 +15,6 @@ class KeranjangFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val view = inflater.inflate(R.layout.fragment_keranjang, container, false)
         val buttoncheckout = view.findViewById<Button>(R.id.btnBayar)
 
