@@ -25,13 +25,7 @@
         android:id="@+id/nav_cart"
         android:name="com.example.onlineshop.KeranjangFragment"
         android:label="Keranjang"
-        tools:layout="@layout/fragment_keranjang">
-
-        <action
-            android:id="@+id/action_keranjang"
-            app:destination="@+id/checkoutFragment"/>
-
-    </fragment>
+        tools:layout="@layout/fragment_keranjang"/>
 
     <!-- Fragment Notifications (sesuai ID: nav_notifications di bottom_nav_menu) -->
     <fragment
