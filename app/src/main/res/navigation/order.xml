@@ -4,21 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/order"
     app:startDestination="@id/deskripsiFragment">
-    <fragment
-        android:id="@+id/checkoutFragment"
-        android:name="com.example.onlineshop.CheckoutFragment"
-        android:label="fragment_checkout"
-        tools:layout="@layout/fragment_checkout" />
-
 
     <fragment
         android:id="@+id/deskripsiFragment"
         android:name="com.example.onlineshop.DeskripsiFragment"
-        android:label="fragment_deskripsi"
-        tools:layout="@layout/fragment_deskripsi" />
+        android:label="Deskripsi Produk"
+        tools:layout="@layout/fragment_deskripsi">
+
+        <!-- Navigasi dari deskripsi → checkout -->
+        <action
+            android:id="@+id/action_deskripsi_to_checkout"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.onlineshop.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+
+        <!-- Navigasi dari checkout → status pembayaran -->
+        <action
+            android:id="@+id/action_checkout_to_status"
+            app:destination="@id/paymentStatusFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/paymentStatusFragment"
         android:name="com.example.onlineshop.StatusFragment"
-        android:label="PaymentStatusFragment"
-        tools:layout="@layout/fragment_status_pembayaran"/>
+        android:label="Status Pembayaran"
+        tools:layout="@layout/fragment_status_pembayaran" />
 </navigation>

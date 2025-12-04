@@ -1,22 +1,19 @@
 package com.example.onlineshop
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-/**
- * Data class untuk merepresentasikan sebuah produk di toko online.
- * @param id ID unik produk
- * @param name Nama produk
- * @param price Harga produk
- * @param imageUrl Resource ID atau URL gambar produk (menggunakan Int sebagai placeholder R.drawable.xxx)
- */
+@Parcelize
 data class Product(
     val id: Int,
     val name: String,
     val brand: String,
     val price: Int,
-    val imageUrl: Int, // Menggunakan Int sebagai placeholder untuk R.drawable.xxx
-) {
-    // Companion object digunakan untuk menyimpan data dummy
+    val imageUrl: Int,
+) : Parcelable {
+
     companion object {
+
         /**
          * Mengembalikan daftar produk dummy untuk ditampilkan di HomeFragment atau DiscoverFragment.
          */

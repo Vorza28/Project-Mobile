@@ -16,9 +16,7 @@ class DiscoverFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Asumsi menggunakan layout fragment_discover.xml
-        // Jika Anda menggunakan layout yang sama dengan HomeFragment, ganti R.layout.fragment_discover
-        // dengan ID layout yang benar. Kami asumsikan ada layout fragment_discover.xml
+        // Menggunakan layout fragment_discover.xml
         return inflater.inflate(R.layout.fragment_discover, container, false)
     }
 
@@ -26,35 +24,43 @@ class DiscoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // --- Inisialisasi RecyclerView Produk Grid ---
-
-        // 1. Ambil data dummy dari Product.kt (bisa menggunakan data yang sama)
         val productList = Product.getDummyProducts()
-
-        // 2. Cari RecyclerView menggunakan ID yang sama dengan HomeFragment atau ID spesifik Discover
-        // Asumsi menggunakan ID products_grid_recycler_view seperti di HomeFragment
         val productsRecyclerView = view.findViewById<RecyclerView>(R.id.discover_products_grid_recycler_view)
 
-        // 3. Pastikan RecyclerView ditemukan
         if (productsRecyclerView != null) {
 
-            // 4. Set LayoutManager jika belum diset
             if (productsRecyclerView.layoutManager == null) {
-                // Menggunakan GridLayoutManager dengan 2 kolom
                 productsRecyclerView.layoutManager = GridLayoutManager(context, 2)
             }
 
-            // 5. Inisialisasi Adapter dengan data dan listener klik
+            // Meneruskan fungsi navigateToProductDescription ke adapter
             val productAdapter = ProductAdapter(productList) { product ->
-
-            // Callback untuk navigasi ke DeskripsiFragment
-                // TODO: Implementasikan navigasi ke DeskripsiFragment di sini,
-                // Sama seperti di HomeFragment.
-                // Contoh: navigateToProductDescription(product)
+                navigateToProductDescription(product) // <-- Panggil fungsi baru
             }
 
-            // 6. Pasang Adapter ke RecyclerView
             productsRecyclerView.adapter = productAdapter
         }
         // --- End of RecyclerView Produk Grid Setup ---
+    }
+
+    /**
+     * Fungsi untuk menangani navigasi ke DeskripsiFragment dan mengirim objek Product.
+     * @param product Produk yang akan ditampilkan deskripsinya.
+     */
+    private fun navigateToProductDescription(product: Product) {
+        val descriptionFragment = DeskripsiFragment()
+
+        // Buat Bundle untuk mengirim objek Product yang sudah Parcelable
+        val bundle = Bundle().apply {
+            putParcelable("product_detail", product) // <-- Kirim objek lengkap
+        }
+
+        descriptionFragment.arguments = bundle
+
+        // Navigasi menggunakan FragmentManager
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.deskripsiFragment, descriptionFragment) // Ganti R.id.fragment_container sesuai ID FrameLayout di Activity Anda
+            .addToBackStack(null) // Penting agar tombol 'back' bisa kembali ke DiscoverFragment
+            .commit()
     }
 }

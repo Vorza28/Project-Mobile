@@ -18,7 +18,7 @@ class ProductAdapter(
     // ViewHolder menyimpan referensi ke semua View yang diperlukan untuk satu item daftar.
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageView = itemView.findViewById(R.id.product_image)
-        val brandTextView: TextView = itemView.findViewById(R.id.product_brand) // Merujuk ke ID brand baru
+        val brandTextView: TextView = itemView.findViewById(R.id.product_brand)
         val nameTextView: TextView = itemView.findViewById(R.id.product_name)
         val priceTextView: TextView = itemView.findViewById(R.id.product_price)
 
