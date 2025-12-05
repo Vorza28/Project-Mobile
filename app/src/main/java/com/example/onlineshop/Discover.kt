@@ -1,5 +1,6 @@
 package com.example.onlineshop
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,40 +28,35 @@ class DiscoverFragment : Fragment() {
         val productList = Product.getDummyProducts()
         val productsRecyclerView = view.findViewById<RecyclerView>(R.id.discover_products_grid_recycler_view)
 
-        if (productsRecyclerView != null) {
-
-            if (productsRecyclerView.layoutManager == null) {
-                productsRecyclerView.layoutManager = GridLayoutManager(context, 2)
-            }
-
             // Meneruskan fungsi navigateToProductDescription ke adapter
-            val productAdapter = ProductAdapter(productList) { product ->
+        val productAdapter = ProductAdapter(productList) { product ->
                 navigateToProductDescription(product) // <-- Panggil fungsi baru
             }
 
-            productsRecyclerView.adapter = productAdapter
+            productsRecyclerView.layoutManager = GridLayoutManager(requireContext(),2)
+        productsRecyclerView.adapter = productAdapter
+
         }
-        // --- End of RecyclerView Produk Grid Setup ---
+
+    private fun navigateToProductDescription(product: Product) {
+        val intent = Intent(requireActivity(), OrderActivity::class.java).apply {
+            putExtra("product_detail", product)
+        }
+        startActivity(intent)
     }
+
+
+
+    }
+
 
     /**
      * Fungsi untuk menangani navigasi ke DeskripsiFragment dan mengirim objek Product.
      * @param product Produk yang akan ditampilkan deskripsinya.
      */
-    private fun navigateToProductDescription(product: Product) {
-        val descriptionFragment = DeskripsiFragment()
 
-        // Buat Bundle untuk mengirim objek Product yang sudah Parcelable
-        val bundle = Bundle().apply {
-            putParcelable("product_detail", product) // <-- Kirim objek lengkap
-        }
 
-        descriptionFragment.arguments = bundle
 
-        // Navigasi menggunakan FragmentManager
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.deskripsiFragment, descriptionFragment) // Ganti R.id.fragment_container sesuai ID FrameLayout di Activity Anda
-            .addToBackStack(null) // Penting agar tombol 'back' bisa kembali ke DiscoverFragment
-            .commit()
-    }
-}
+
+
+
