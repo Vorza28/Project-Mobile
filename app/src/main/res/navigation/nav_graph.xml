@@ -2,12 +2,31 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/deskripsiFragment">
 
+    <!-- Fragment asli tetap ada -->
     <fragment
         android:id="@+id/deskripsiFragment"
-        android:name="com.example.onlineshop.DeskripsiFragment">
+        android:name="com.example.onlineshop.DeskripsiFragment"
+        android:label="Deskripsi" />
+
+    <!-- Tambahkan Fragment Profile -->
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.onlineshop.ProfileFragment"
+        android:label="Profil">
+
+        <!-- Action menuju Edit Profile -->
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
 
+    <!-- Tambahkan Fragment Edit Profile -->
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.onlineshop.EditProfileFragment"
+        android:label="Edit Profil" />
 
 </navigation>

@@ -40,4 +40,19 @@
         android:name="com.example.onlineshop.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+
+    <!-- ACTION TAMBAHAN -->
+    <action
+        android:id="@+id/action_profileFragment_to_editProfileFragment"
+        app:destination="@id/editProfileFragment" />
+
+
+
+    <!-- WAJIB ADA UNTUK MENCEGAH FORCE CLOSE -->
+<fragment
+android:id="@+id/editProfileFragment"
+android:name="com.example.onlineshop.EditProfileFragment"
+android:label="Edit Profile"
+tools:layout="@layout/fragment_edit_profile" />
+
 </navigation>
