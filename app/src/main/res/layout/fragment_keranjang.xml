@@ -40,7 +40,22 @@
             app:layout_constraintTop_toBottomOf="@id/edtSearch"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- PERUBAHAN PADA RECYCLERVIEW -->
+        <!-- TEXT KOSONG -->
+        <TextView
+            android:id="@+id/tvKosong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keranjang masih kosong"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#888888"
+            android:layout_marginTop="40dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@id/txtKeranjang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!-- RECYCLERVIEW KERANJANG -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvKeranjang"
             android:layout_width="0dp"
@@ -48,15 +63,13 @@
             android:clipToPadding="false"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@id/txtTotal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtKeranjang"
-            app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/item_keranjang" />
 
-        <!-- ================== TEXTVIEW BARU DITAMBAHKAN DI SINI ================== -->
         <TextView
             android:id="@+id/txtTotal"
             android:layout_width="0dp"
@@ -71,7 +84,6 @@
             app:layout_constraintBottom_toTopOf="@id/btnBayar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
-        <!-- ======================================================================= -->
 
         <Button
             android:id="@+id/btnBayar"

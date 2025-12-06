@@ -10,6 +10,8 @@ data class Product(
     val brand: String,
     val price: Int,
     val imageUrl: Int,
+    var quantity: Int = 1,
+    var isChecked: Boolean = false
 ) : Parcelable {
 
     companion object {

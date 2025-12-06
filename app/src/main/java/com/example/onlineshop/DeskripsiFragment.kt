@@ -15,39 +15,30 @@ import java.util.Locale
 
 class DeskripsiFragment : Fragment() {
 
-    // Deklarasi View di level kelas agar bisa diakses di seluruh fragment
     private lateinit var productImageView: ImageView
     private lateinit var brandTextView: TextView
     private lateinit var nameTextView: TextView
     private lateinit var priceTextView: TextView
     private lateinit var buyButton: Button
+    private lateinit var buttonKeranjang: Button
 
-    // Properti untuk menampung data produk
     private var product: Product? = null
 
     companion object {
-        // Kunci untuk menyimpan dan mengambil data dari arguments
         private const val ARG_PRODUCT = "product_data"
 
-        /**
-         * Factory method untuk membuat instance baru dari fragment ini.
-         * Ini adalah cara yang direkomendasikan untuk mengirim data ke fragment.
-         * @param product Produk yang akan ditampilkan.
-         * @return Instance baru dari DeskripsiFragment.
-         */
         fun newInstance(product: Product): DeskripsiFragment {
-            val fragment = DeskripsiFragment()
-            val args = Bundle().apply {
-                putParcelable(ARG_PRODUCT, product)
+            return DeskripsiFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(ARG_PRODUCT, product)
+                }
             }
-            fragment.arguments = args
-            return fragment
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Ambil data dari arguments di sini
+
         arguments?.let {
             product = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.getParcelable(ARG_PRODUCT, Product::class.java)
@@ -62,69 +53,71 @@ class DeskripsiFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Menggunakan layout fragment_deskripsi.xml
         return inflater.inflate(R.layout.fragment_deskripsi, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Inisialisasi semua View dari layout
         productImageView = view.findViewById(R.id.imageDeskripsi)
         brandTextView = view.findViewById(R.id.textView6)
         nameTextView = view.findViewById(R.id.textViewNamaProduk)
         priceTextView = view.findViewById(R.id.textViewHarga)
         buyButton = view.findViewById(R.id.buttonBayar)
+        buttonKeranjang = view.findViewById(R.id.buttonKeranjang)
 
-        // 2. Panggil fungsi untuk menampilkan data
         displayProductData()
 
-        // 3. Atur listener untuk tombol
         buyButton.setOnClickListener {
-            product?.let {
-                navigateToCheckout(it)
+            product?.let { navigateToCheckout(it) }
+        }
+
+        // FIX: tambah ke CartManager
+        buttonKeranjang.setOnClickListener {
+            product?.let { addToCart(it) }
+        }
+    }
+
+    private fun displayProductData() {
+        if (product == null) {
+            Toast.makeText(requireContext(), "Produk tidak ditemukan!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        productImageView.setImageResource(product!!.imageUrl)
+        brandTextView.text = product!!.brand
+        nameTextView.text = product!!.name
+
+        val formatRupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+        priceTextView.text = formatRupiah.format(product!!.price.toDouble())
+    }
+
+    private fun navigateToCheckout(product: Product) {
+        val checkoutFragment = CheckoutFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable("productData", product)
             }
         }
-    }
 
-    /**
-     * Fungsi untuk menampilkan data produk ke UI.
-     */
-    private fun displayProductData() {
-        if (product != null) {
-            productImageView.setImageResource(product!!.imageUrl)
-            brandTextView.text = product!!.brand
-            nameTextView.text = product!!.name
-
-            // Menggunakan NumberFormat untuk format mata uang yang lebih andal
-            val localeID = Locale("in", "ID")
-            val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
-            priceTextView.text = formatRupiah.format(product!!.price.toDouble())
-
-            buyButton.isEnabled = true
-        } else {
-            // Handle jika data gagal dimuat (seharusnya tidak terjadi jika alur benar)
-            Toast.makeText(requireContext(), "Error: Gagal memuat data produk.", Toast.LENGTH_SHORT).show()
-            buyButton.isEnabled = false
-        }
-    }
-
-    /**
-     * Fungsi untuk navigasi ke CheckoutFragment.
-     */
-    private fun navigateToCheckout(product: Product) {
-        val checkoutFragment = CheckoutFragment()
-
-        val bundle = Bundle().apply {
-            // Asumsi CheckoutFragment menunggu kunci "productData"
-            putParcelable("productData", product)
-        }
-        checkoutFragment.arguments = bundle
-
-        // Navigasi menggunakan FragmentManager (internal di dalam OrderActivity)
         parentFragmentManager.beginTransaction()
-            .replace(R.id.order_fragment_container, checkoutFragment) // Asumsi ID container
+            .replace(R.id.order_fragment_container, checkoutFragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    // FIX: Tambahkan item ke CartManager
+    private fun addToCart(product: Product) {
+
+        // Tambahkan item ke keranjang
+        CartManager.addItem(product)
+
+        // Notifikasi
+        Toast.makeText(
+            requireContext(),
+            "Barang dimasukkan ke keranjang",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        // Tidak berpindah fragment
     }
 }

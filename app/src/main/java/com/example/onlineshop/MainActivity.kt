@@ -1,5 +1,6 @@
 package com.example.onlineshop
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -13,31 +14,41 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Menghubungkan layout activity_main.xml
         setContentView(R.layout.activity_main)
 
-        // 1. Dapatkan NavController dari NavHostFragment
-        // NavHostFragment memiliki ID: nav_host_fragment di activity_main.xml Anda
+        // Ambil NavController dari NavHostFragment
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // 2. Dapatkan BottomNavigationView
-        // BottomNavigationView memiliki ID: bottom_navigation di activity_main.xml Anda
+        // Hubungkan BottomNavigationView dengan NavController
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-
-        // 3. Menghubungkan BottomNavigationView dengan NavController
-        // Ini memungkinkan klik pada menu navigasi untuk memicu perpindahan Fragment
         bottomNavigationView.setupWithNavController(navController)
 
-        // 4. (Opsional) Mengatur ikon Notifikasi agar terpilih ketika Activity dimulai
-        // Jika Anda ingin menyorot ikon notifikasi saat aplikasi dibuka (tidak umum)
-        // bottomNavigationView.selectedItemId = R.id.nav_notifications
+        // Cek apakah ada data produk dari DeskripsiFragment
+        val product = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra("CART_PRODUCT", Product::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra<Product>("CART_PRODUCT")
+        }
+
+        // Jika ada produk, kirim ke KeranjangFragment
+        if (product != null) {
+            val fragment = KeranjangFragment()
+            fragment.arguments = Bundle().apply {
+                putParcelable("cartItem", product)
+            }
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, fragment)
+                .commit()
+
+            // Pindahkan bottom navigation ke Menu Keranjang (jika ada)
+            bottomNavigationView.selectedItemId = R.id.nav_cart
+        }
     }
 
-    /**
-     * Mengatur tombol 'Back' perangkat agar menavigasi ke Fragment sebelumnya (jika ada).
-     */
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
