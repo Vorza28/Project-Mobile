@@ -36,30 +36,41 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Recommendation Banner -->
-            <ImageView
+            <HorizontalScrollView
                 android:id="@+id/recommendation_banner"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/banner1"
-                android:contentDescription="Rekomendasi Banner"
-                app:layout_constraintTop_toBottomOf="@id/search_bar" />
+                android:scrollbars="none"
+                app:layout_constraintTop_toBottomOf="@id/search_bar">
 
-            <!-- Text Rekomendasi di atas Banner -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rekomendasi"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="@id/recommendation_banner"
-                app:layout_constraintStart_toStartOf="@id/recommendation_banner" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="380dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banner1" />
+
+                    <ImageView
+                        android:layout_width="380dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banner2" />
+
+                    <ImageView
+                        android:layout_width="380dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banner3" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <!-- Judul Kategori -->
             <TextView
