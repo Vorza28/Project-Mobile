@@ -8,24 +8,19 @@
     android:paddingTop="4dp"
     android:paddingBottom="4dp">
 
-    <FrameLayout
-        android:id="@+id/category_image_container"
+    <ImageView
+        android:id="@+id/category_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/circle_background"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:clipToOutline="true"
+        android:contentDescription="Gambar Kategori"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:id="@+id/category_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:padding="4dp"
-            android:contentDescription="Gambar Kategori"
-            tools:src="@drawable/placeholder_category_shoes" />
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/sneakers" />
 
     <TextView
         android:id="@+id/category_title"
@@ -35,7 +30,7 @@
         android:gravity="center"
         android:textSize="12sp"
         android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/category_image_container"
+        app:layout_constraintTop_toBottomOf="@id/category_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Judul" />
