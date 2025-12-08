@@ -9,7 +9,13 @@
     <fragment
         android:id="@+id/deskripsiFragment"
         android:name="com.example.onlineshop.DeskripsiFragment"
-        android:label="Deskripsi" />
+        android:label="Deskripsi">
+
+<!--        <action-->
+<!--            android:id="@+id/action_deskripsiFragment_to_checkoutFragment"-->
+<!--            app:destination="@id/checkoutFragment" />-->
+    </fragment>
+
 
     <!-- Tambahkan Fragment Profile -->
     <fragment

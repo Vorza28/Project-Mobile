@@ -11,7 +11,6 @@
         android:label="Deskripsi Produk"
         tools:layout="@layout/fragment_deskripsi">
 
-        <!-- Navigasi dari deskripsi → checkout -->
         <action
             android:id="@+id/action_deskripsi_to_checkout"
             app:destination="@id/checkoutFragment" />
@@ -23,14 +22,13 @@
         android:label="Checkout"
         tools:layout="@layout/fragment_checkout">
 
-        <!-- Navigasi dari checkout → status pembayaran -->
         <action
             android:id="@+id/action_checkout_to_status"
-            app:destination="@id/paymentStatusFragment" />
+            app:destination="@id/statusFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/paymentStatusFragment"
+        android:id="@+id/statusFragment"
         android:name="com.example.onlineshop.StatusFragment"
         android:label="Status Pembayaran"
         tools:layout="@layout/fragment_status_pembayaran" />

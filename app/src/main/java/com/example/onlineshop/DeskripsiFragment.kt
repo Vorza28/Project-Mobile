@@ -59,6 +59,7 @@ class DeskripsiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Bind view
         productImageView = view.findViewById(R.id.imageDeskripsi)
         brandTextView = view.findViewById(R.id.textView6)
         nameTextView = view.findViewById(R.id.textViewNamaProduk)
@@ -68,11 +69,12 @@ class DeskripsiFragment : Fragment() {
 
         displayProductData()
 
+        // Tombol Checkout
         buyButton.setOnClickListener {
             product?.let { navigateToCheckout(it) }
         }
 
-        // FIX: tambah ke CartManager
+        // Tombol Tambah ke Keranjang
         buttonKeranjang.setOnClickListener {
             product?.let { addToCart(it) }
         }
@@ -93,9 +95,12 @@ class DeskripsiFragment : Fragment() {
     }
 
     private fun navigateToCheckout(product: Product) {
+        // Buat ArrayList supaya CheckoutFragment bisa membaca
+        val list = arrayListOf(product)
+
         val checkoutFragment = CheckoutFragment().apply {
             arguments = Bundle().apply {
-                putParcelable("productData", product)
+                putParcelableArrayList("checkout_item", list)
             }
         }
 
@@ -105,19 +110,8 @@ class DeskripsiFragment : Fragment() {
             .commit()
     }
 
-    // FIX: Tambahkan item ke CartManager
     private fun addToCart(product: Product) {
-
-        // Tambahkan item ke keranjang
         CartManager.addItem(product)
-
-        // Notifikasi
-        Toast.makeText(
-            requireContext(),
-            "Barang dimasukkan ke keranjang",
-            Toast.LENGTH_SHORT
-        ).show()
-
-        // Tidak berpindah fragment
+        Toast.makeText(requireContext(), "Barang dimasukkan ke keranjang", Toast.LENGTH_SHORT).show()
     }
 }

@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onlineshop.databinding.FragmentKeranjangBinding
+import kotlinx.serialization.builtins.ArraySerializer
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -42,13 +44,20 @@ class KeranjangFragment : Fragment(), KeranjangAdapter.CartListener {
         }
 
         binding.btnBayar.setOnClickListener {
-            val total = calculateTotal()
-            if (total <= 0) {
-                Toast.makeText(requireContext(), "Pilih barang terlebih dahulu!", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "Total bayar: ${formatRupiah(total)}", Toast.LENGTH_SHORT).show()
+            val selectedItem = cartItems.filter { it.isChecked }
+
+            if (selectedItem.isEmpty()) {
+                Toast.makeText(requireContext(), "pilih barang terlebih dahulu", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("checkout_items", ArrayList(selectedItem))
+
+            findNavController().navigate(
+                R.id.action_keranjang_to_checkout, bundle
+            )
         }
+
 
         updateUI()
     }
