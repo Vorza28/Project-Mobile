@@ -23,29 +23,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginBottom="12dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="12dp">
-
-                <ImageView
-                    android:id="@+id/imageViewSearch"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@android:drawable/ic_menu_search" />
-
-                <TextView
-                    android:id="@+id/textViewSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Search" />
-
-            </LinearLayout>
-
             <ImageView
                 android:id="@+id/imageDeskripsi"
                 android:layout_width="match_parent"
@@ -76,9 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Keranjang"
-                android:backgroundTint="@color/white"/>
+                android:backgroundTint="@color/black"/>
 
             <TextView
                 android:id="@+id/textViewDeskripsiProduk"

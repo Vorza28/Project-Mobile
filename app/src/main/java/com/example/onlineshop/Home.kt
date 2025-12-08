@@ -1,6 +1,5 @@
 package com.example.onlineshop
 
-import CategoryAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class HomeFragment : Fragment() {
+
     companion object {
         const val KEY_PRODUCT_DETAIL = "product_detail"
     }
+
+    private lateinit var productAdapter: ProductAdapter
+    private lateinit var fullProductList: List<Product>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,30 +29,51 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // === RecyclerView Product ===
-        val recyclerView = view.findViewById<RecyclerView>(R.id.products_grid_recycler_view)
-        val productList = Product.getDummyProducts()
+        // === INIT PRODUCT LIST ===
+        fullProductList = Product.getDummyProducts()
 
-        val productAdapter = ProductAdapter(productList) { product ->
+        // === SETUP PRODUCT RECYCLERVIEW ===
+        val productRecycler = view.findViewById<RecyclerView>(R.id.products_grid_recycler_view)
+
+        productAdapter = ProductAdapter(fullProductList) { product ->
             launchOrderActivity(product)
         }
 
-        recyclerView.apply {
+        productRecycler.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = productAdapter
         }
 
-        val recyclerViewCategory = view.findViewById<RecyclerView>(R.id.category_recycler_view)
+        // === SETUP CATEGORY RECYCLER ===
+        val categoryRecycler = view.findViewById<RecyclerView>(R.id.category_recycler_view)
         val categoryList = getDummyCategory()
 
         val categoryAdapter = CategoryAdapter(categoryList) { category ->
+            if (category.name == "Tampilkan Semua") {
+                showAllProducts()
+            } else {
+                filterProductByCategory(category.name)
+            }
         }
 
-        recyclerViewCategory.apply {
+        categoryRecycler.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = categoryAdapter
         }
+    }
+
+    // === FILTER PRODUK BERDASARKAN KATEGORI ===
+    private fun filterProductByCategory(catName: String) {
+        val filteredList = fullProductList.filter {
+            it.kategori.name.equals(catName, ignoreCase = true)
+        }
+        productAdapter.updateData(filteredList)
+    }
+
+    // === TAMPILKAN SEMUA PRODUK ===
+    private fun showAllProducts() {
+        productAdapter.updateData(fullProductList)
     }
 
     private fun launchOrderActivity(product: Product) {
@@ -59,9 +83,10 @@ class HomeFragment : Fragment() {
         startActivity(intent)
     }
 
-    // === LIST KATEGORI (TIDAK MENGUBAH FUNGSI LAIN) ===
+    // === KATEGORI DUMMY ===
     private fun getDummyCategory(): List<Category> {
         return listOf(
+            Category("Tampilkan Semua", R.drawable.ic_all),
             Category("Kaos", R.drawable.kaos),
             Category("Celana", R.drawable.celana),
             Category("Jaket", R.drawable.jaket),
