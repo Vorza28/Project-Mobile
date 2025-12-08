@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
 import java.util.Locale
+import android.widget.TextView
 
 class CheckoutFragment : Fragment() {
 
@@ -20,29 +21,12 @@ class CheckoutFragment : Fragment() {
     private lateinit var totalText: TextView
     private lateinit var buttonBayar: Button
 
-    // Data item checkout akan dimuat di sini dari Arguments
     private var checkoutList: ArrayList<Product> = arrayListOf()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Ambil data dari Arguments yang disiapkan oleh Activity penampung (OrderActivity)
-        arguments?.let {
-            checkoutList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.getParcelableArrayList("checkout_item", Product::class.java) ?: arrayListOf()
-            } else {
-                @Suppress("DEPRECATION")
-                it.getParcelableArrayList<Product>("checkout_item") ?: arrayListOf()
-            }
-        }
-        // Catatan: Logika penanganan error data kosong dipindahkan ke OrderActivity.
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Pastikan Anda memiliki R.layout.fragment_checkout
         return inflater.inflate(R.layout.fragment_checkout, container, false)
     }
 
@@ -82,11 +66,3 @@ class CheckoutFragment : Fragment() {
                 putParcelableArrayList("checkout_item", checkoutList)
             }
         }
-
-        // Navigasi ke StatusFragment dalam Activity yang sama (OrderActivity)
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.order_fragment_container, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
-}
