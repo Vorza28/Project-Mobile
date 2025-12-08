@@ -190,144 +190,11 @@
                     android:layout_gravity="center_vertical"
                     app:srcCompat="@drawable/ic_arrow_right" />
             </LinearLayout>
-
-            <View
-                android:id="@+id/view5"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="12dp" />
-
-            <!-- HEADER BARANG -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp">
-
-                <TextView
-                    android:id="@+id/textBarang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BARANG"
-                    android:textStyle="bold"
-                    android:paddingTop="16dp" />
-
-                <TextView
-                    android:id="@+id/textDeskripsi"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="DESKRIPSI"
-                    android:textStyle="bold"
-                    android:paddingTop="16dp" />
-
-                <TextView
-                    android:id="@+id/textHarga"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="HARGA"
-                    android:textStyle="bold"
-                    android:paddingTop="16dp" />
-            </LinearLayout>
-
-            <!-- ITEM 1 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp">
-
-                <ImageView
-                    android:id="@+id/imageitem1"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textBrand"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Brand"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textNamaProduk"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Deskripsi" />
-
-                    <TextView
-                        android:id="@+id/textJumlah2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Jumlah : 1" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/hargaitem1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10.000" />
-            </LinearLayout>
-
-            <!-- ITEM 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp">
-
-                <ImageView
-                    android:id="@+id/imageitem2"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp">
-
-                    <TextView
-                        android:id="@+id/textBrand2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Brand"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textNamaProduk2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Deskripsi" />
-
-                    <TextView
-                        android:id="@+id/textJumlah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Jumlah : 1" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/hargaitem2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10.000" />
-            </LinearLayout>
+                android:paddingVertical="12dp"/>
 
             <!-- SUBTOTAL -->
             <LinearLayout
@@ -406,7 +273,7 @@
                 android:paddingVertical="12dp">
 
                 <TextView
-                    android:id="@+id/textTotalBelanja"
+                    android:id="@+id/textTotalStatus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
