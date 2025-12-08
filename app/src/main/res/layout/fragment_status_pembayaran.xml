@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckoutFragment">
+    tools:context=".CheckoutFragment"
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,6 +44,16 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_check_circle" />
+
+            <TextView
+                android:id="@+id/txtPesanan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="BERHASIL"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -234,100 +245,12 @@
             </LinearLayout>
 
             <!-- ITEM 1 -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp">
-
-                <ImageView
-                    android:id="@+id/imageitem1"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textBrand"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Brand"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textNamaProduk"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Deskripsi" />
-
-                    <TextView
-                        android:id="@+id/textJumlah2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Jumlah : 1" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/hargaitem1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10.000" />
-            </LinearLayout>
-
-            <!-- ITEM 2 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="12dp">
-
-                <ImageView
-                    android:id="@+id/imageitem2"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_launcher_background" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp">
-
-                    <TextView
-                        android:id="@+id/textBrand2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Brand"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textNamaProduk2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Deskripsi" />
-
-                    <TextView
-                        android:id="@+id/textJumlah"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Jumlah : 1" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/hargaitem2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10.000" />
-            </LinearLayout>
+                android:paddingVertical="12dp"
+                tools:listitem="@layout/item_checkout"/>
 
             <!-- SUBTOTAL -->
             <LinearLayout
@@ -341,7 +264,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subtotal(2)" />
+                    android:text="Subtotal" />
 
                 <TextView
                     android:id="@+id/textSubtotalharga"
@@ -422,9 +345,21 @@
                     android:text="20.200" />
             </LinearLayout>
 
-            <!-- BUTTON PESAN -->
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnBeranda"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:text="BERANDA"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

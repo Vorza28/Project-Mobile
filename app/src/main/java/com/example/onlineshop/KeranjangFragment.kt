@@ -1,15 +1,15 @@
 package com.example.onlineshop
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onlineshop.databinding.FragmentKeranjangBinding
-import kotlinx.serialization.builtins.ArraySerializer
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -43,21 +43,18 @@ class KeranjangFragment : Fragment(), KeranjangAdapter.CartListener {
             adapter = cartAdapter
         }
 
-        binding.btnBayar.setOnClickListener {
+        binding.btnCheckout.setOnClickListener {
+            // Filter item yang dicentang
             val selectedItem = cartItems.filter { it.isChecked }
 
             if (selectedItem.isEmpty()) {
                 Toast.makeText(requireContext(), "pilih barang terlebih dahulu", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val bundle = Bundle()
-            bundle.putParcelableArrayList("checkout_items", ArrayList(selectedItem))
 
-            findNavController().navigate(
-                R.id.action_keranjang_to_checkout, bundle
-            )
+            // Navigasi ke Activity checkout
+            navigateToCheckoutActivity(ArrayList(selectedItem))
         }
-
 
         updateUI()
     }
@@ -100,11 +97,24 @@ class KeranjangFragment : Fragment(), KeranjangAdapter.CartListener {
 
     override fun onResume() {
         super.onResume()
+        // Pastikan UI diperbarui saat kembali ke fragment
         updateUI()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    /**
+     * Fungsi untuk menavigasi ke OrderActivity dan membawa data keranjang.
+     */
+    private fun navigateToCheckoutActivity(checkoutItems: ArrayList<Product>) {
+        // Menggunakan OrderActivity sebagai Activity tujuan.
+        val intent = Intent(requireContext(), OrderActivity::class.java).apply {
+            // Kunci "checkout_item" harus sama dengan yang diambil oleh CheckoutFragment
+            putParcelableArrayListExtra("checkout_item", checkoutItems)
+        }
+        startActivity(intent)
     }
 }

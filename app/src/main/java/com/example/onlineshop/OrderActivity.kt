@@ -11,29 +11,57 @@ class OrderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
 
-        // 1. Ambil data produk dari Intent yang dikirim oleh HomeFragment
-        val product = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Gunakan kunci yang sama persis seperti di HomeFragment
-            intent.getParcelableExtra(HomeFragment.KEY_PRODUCT_DETAIL, Product::class.java)
-        } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra<Product>(HomeFragment.KEY_PRODUCT_DETAIL)
-        }
+        if (savedInstanceState == null) {
 
-        // 2. Periksa apakah produk berhasil diterima
-        if (product != null) {
-            // 3. Jika berhasil, buat instance DeskripsiFragment menggunakan factory method
-            //    dan kirimkan data produk ke dalamnya.
-            val deskripsiFragment = DeskripsiFragment.newInstance(product)
+            // 1. Cek apakah Intent membawa data LIST produk untuk CHECKOUT (dari KeranjangFragment)
+            val checkoutItems: ArrayList<Product>? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                // Mencoba mengambil List produk menggunakan kunci "checkout_item"
+                intent.getParcelableArrayListExtra("checkout_item", Product::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableArrayListExtra("checkout_item")
+            }
 
-            // 4. Tampilkan fragment di dalam container
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.order_fragment_container, deskripsiFragment) // Pastikan ID container ini ada di activity_order.xml
-                .commit()
-        } else {
-            // 5. Jika data produk tidak ditemukan dari Intent, tampilkan error dan tutup activity
-            Toast.makeText(this, "Error: Gagal menerima data produk dari halaman utama.", Toast.LENGTH_LONG).show()
-            finish() // Tutup activity karena tidak ada data untuk ditampilkan
+            if (!checkoutItems.isNullOrEmpty()) {
+                // --- KASUS 1: Navigasi dari KeranjangFragment (Checkout) ---
+
+                val checkoutFragment = CheckoutFragment().apply {
+                    arguments = Bundle().apply {
+                        // Masukkan data list produk ke Arguments Fragment
+                        putParcelableArrayList("checkout_item", checkoutItems)
+                    }
+                }
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.order_fragment_container, checkoutFragment)
+                    .commit()
+
+            } else {
+                // --- KASUS 2: Logika yang Sudah Ada (Deskripsi dari HomeFragment) ---
+
+                // 1. Ambil data produk tunggal dari Intent
+                val product = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    // Menggunakan kunci yang sudah ada (HomeFragment.KEY_PRODUCT_DETAIL)
+                    intent.getParcelableExtra(HomeFragment.KEY_PRODUCT_DETAIL, Product::class.java)
+                } else {
+                    @Suppress("DEPRECATION")
+                    intent.getParcelableExtra<Product>(HomeFragment.KEY_PRODUCT_DETAIL)
+                }
+
+                // 2. Periksa apakah produk tunggal berhasil diterima
+                if (product != null) {
+                    // 3. Muat DeskripsiFragment
+                    val deskripsiFragment = DeskripsiFragment.newInstance(product)
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.order_fragment_container, deskripsiFragment)
+                        .commit()
+                } else {
+                    // 4. Jika tidak ada data yang berhasil diterima sama sekali (Checkout ATAU Deskripsi)
+                    Toast.makeText(this, "Error: Gagal menerima data produk untuk ditampilkan.", Toast.LENGTH_LONG).show()
+                    finish()
+                }
+            }
         }
     }
 }
