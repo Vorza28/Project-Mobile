@@ -13,6 +13,7 @@ data class Product(
     var quantity: Int = 1,
     var isChecked: Boolean = false,
     val kategori: Kategori,
+    val deskripsi : String,
 ) : Parcelable {
 
     enum class Kategori {
@@ -32,7 +33,9 @@ data class Product(
                     price = 750000,
                     imageUrl = R.drawable.hoodie,
                     brand = "Ayam",
-                    kategori = Kategori.Jaket
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Hoodie pria ini hadir dengan bahan fleece lembut yang hangat dan nyaman dipakai. Desainnya simpel namun tetap stylish untuk aktivitas harian. Cocok dipakai ke kampus, nongkrong, atau sekadar santai di rumah."
+
                 ),
                 Product(
                     id = 2,
@@ -40,7 +43,8 @@ data class Product(
                     price = 1200000,
                     imageUrl = R.drawable.jaketkulit,
                     brand = "Ayam",
-                    kategori = Kategori.Jaket
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Jaket ini hadir dengan desain simpel namun tetap stylish untuk dipakai sehari-hari. Terbuat dari bahan yang adem dan ringan, sehingga nyaman digunakan dalam berbagai aktivitas. Cocok untuk kuliah, kerja, maupun hangout."
                 ),
                 Product(
                     id = 3,
@@ -48,7 +52,8 @@ data class Product(
                     price = 999000,
                     imageUrl = R.drawable.sneakers,
                     brand = "Ayam",
-                    kategori = Kategori.Sepatu
+                    kategori = Kategori.Sepatu,
+                    deskripsi = "Sepatu sneakers ini dirancang dengan bantalan empuk yang nyaman untuk dipakai seharian. Bahannya ringan dan breathable sehingga kaki tetap terasa adem. Modelnya simpel dan mudah dipadukan dengan berbagai gaya outfit."
                 ),
                 Product(
                     id = 4,
@@ -56,7 +61,8 @@ data class Product(
                     price = 350000,
                     imageUrl = R.drawable.jeans,
                     brand = "Ayam",
-                    kategori = Kategori.Celana
+                    kategori = Kategori.Celana,
+                    deskripsi = "Celana jeans ini menggunakan bahan denim berkualitas yang kuat dan tidak mudah melar. Model regular fit membuatnya nyaman dipakai untuk aktivitas sehari-hari. Warna biru klasiknya mudah dipadukan dengan berbagai gaya outfit."
                 ),
                 Product(
                     id = 5,
@@ -64,7 +70,8 @@ data class Product(
                     price = 8500000,
                     imageUrl = R.drawable.topibalap,
                     brand = "Ayam",
-                    kategori = Kategori.Topi
+                    kategori = Kategori.Topi,
+                    deskripsi = "Topi baseball ini hadir dengan desain simpel yang cocok untuk aktivitas sehari-hari. Bahannya ringan dan tidak panas saat dipakai. Cocok untuk melengkapi gaya casual atau outdoor."
                 ),
                 Product(
                     id = 6,
@@ -72,7 +79,8 @@ data class Product(
                     price = 400000,
                     imageUrl = R.drawable.kaosputih,
                     brand = "Ayam",
-                    kategori = Kategori.Kaos
+                    kategori = Kategori.Kaos,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
                 )
             )
         }

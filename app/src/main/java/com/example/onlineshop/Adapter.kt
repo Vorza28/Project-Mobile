@@ -25,6 +25,7 @@ class ProductAdapter(
         val brandTextView: TextView = itemView.findViewById(R.id.product_brand)
         val nameTextView: TextView = itemView.findViewById(R.id.product_name)
         val priceTextView: TextView = itemView.findViewById(R.id.product_price)
+//        val deskripsiTextView : TextView = itemView.findViewById(R.id.deskripsi_product)
 
         fun bind(product: Product, clickListener: (Product) -> Unit) {
             imageView.setImageResource(product.imageUrl)
@@ -33,6 +34,8 @@ class ProductAdapter(
 
             val formattedPrice = String.format("Rp %,d", product.price).replace(",", ".")
             priceTextView.text = formattedPrice
+
+//            deskripsiTextView.text = product.deskripsi
 
             itemView.setOnClickListener {
                 clickListener(product)

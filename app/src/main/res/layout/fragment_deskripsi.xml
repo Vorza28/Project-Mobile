@@ -65,6 +65,15 @@
                 android:textSize="20sp"
                 android:text="Deskripsi Produk" />
 
+            <TextView
+                android:id="@+id/DeskripsiDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                />
+
+
         </LinearLayout>
     </ScrollView>
 

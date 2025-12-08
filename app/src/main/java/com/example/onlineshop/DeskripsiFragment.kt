@@ -19,6 +19,7 @@ class DeskripsiFragment : Fragment() {
     private lateinit var brandTextView: TextView
     private lateinit var nameTextView: TextView
     private lateinit var priceTextView: TextView
+    private lateinit var deskripsiDetailView : TextView
     private lateinit var buyButton: Button
     private lateinit var buttonKeranjang: Button
 
@@ -66,6 +67,7 @@ class DeskripsiFragment : Fragment() {
         priceTextView = view.findViewById(R.id.textViewHarga)
         buyButton = view.findViewById(R.id.buttonBayar)
         buttonKeranjang = view.findViewById(R.id.buttonKeranjang)
+        deskripsiDetailView = view.findViewById(R.id.DeskripsiDetail)
 
         displayProductData()
 
@@ -89,11 +91,11 @@ class DeskripsiFragment : Fragment() {
         productImageView.setImageResource(product!!.imageUrl)
         brandTextView.text = product!!.brand
         nameTextView.text = product!!.name
+        deskripsiDetailView.text = product!!.deskripsi
 
         val formatRupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
         priceTextView.text = formatRupiah.format(product!!.price.toDouble())
     }
-
     private fun navigateToCheckout(product: Product) {
         // Buat ArrayList supaya CheckoutFragment bisa membaca
         val list = arrayListOf(product)
