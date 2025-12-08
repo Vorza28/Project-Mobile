@@ -275,13 +275,6 @@
                     android:layout_weight="1"
                     android:text="0"/>
             </LinearLayout>
-            <Button
-                android:id="@+id/buttonPesan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:text="Buat Pesanan"
-                android:backgroundTint="@color/black" />
         </LinearLayout>
     </ScrollView>
 
