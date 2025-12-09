@@ -6,28 +6,45 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.onlineshop.R
-import com.example.onlineshop.Product
 
 class ProductAdapter(
-    private var filteredList: List<Product>,    // <-- sekarang list bisa berubah
+    private var originalList: List<Product>,
     private val clickListener: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
-    // ==== FUNGSI BARU UNTUK UPDATE LIST PRODUK ====
+    private var filteredList: MutableList<Product> = originalList.toMutableList()
+
+    // ==== UPDATE DATA (untuk kategori) ====
     fun updateData(newList: List<Product>) {
-        filteredList = newList
+        originalList = newList
+        filteredList = newList.toMutableList()
+        notifyDataSetChanged()
+    }
+
+    // ==== FILTER SEARCH ====
+    fun filter(query: String) {
+        val keyword = query.lowercase()
+
+        filteredList = if (keyword.isEmpty()) {
+            originalList.toMutableList()
+        } else {
+            originalList.filter {
+                it.name.lowercase().contains(keyword) ||
+                        it.brand.lowercase().contains(keyword) ||
+                        it.kategori.name.lowercase().contains(keyword)
+            }.toMutableList()
+        }
+
         notifyDataSetChanged()
     }
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView: ImageView = itemView.findViewById(R.id.product_image)
-        val brandTextView: TextView = itemView.findViewById(R.id.product_brand)
-        val nameTextView: TextView = itemView.findViewById(R.id.product_name)
-        val priceTextView: TextView = itemView.findViewById(R.id.product_price)
-//        val deskripsiTextView : TextView = itemView.findViewById(R.id.deskripsi_product)
+        private val imageView: ImageView = itemView.findViewById(R.id.product_image)
+        private val brandTextView: TextView = itemView.findViewById(R.id.product_brand)
+        private val nameTextView: TextView = itemView.findViewById(R.id.product_name)
+        private val priceTextView: TextView = itemView.findViewById(R.id.product_price)
 
-        fun bind(product: Product, clickListener: (Product) -> Unit) {
+        fun bind(product: Product) {
             imageView.setImageResource(product.imageUrl)
             brandTextView.text = product.brand
             nameTextView.text = product.name
@@ -35,11 +52,7 @@ class ProductAdapter(
             val formattedPrice = String.format("Rp %,d", product.price).replace(",", ".")
             priceTextView.text = formattedPrice
 
-//            deskripsiTextView.text = product.deskripsi
-
-            itemView.setOnClickListener {
-                clickListener(product)
-            }
+            itemView.setOnClickListener { clickListener(product) }
         }
     }
 
@@ -50,10 +63,8 @@ class ProductAdapter(
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(filteredList[position], clickListener)
+        holder.bind(filteredList[position])
     }
 
-    override fun getItemCount(): Int {
-        return filteredList.size
-    }
+    override fun getItemCount(): Int = filteredList.size
 }
