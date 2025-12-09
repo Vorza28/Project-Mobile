@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,14 +36,12 @@ class CheckoutFragment : Fragment() {
                 it.getParcelableArrayList<Product>("checkout_item") ?: arrayListOf()
             }
         }
-        // Catatan: Logika penanganan error data kosong dipindahkan ke OrderActivity.
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Pastikan Anda memiliki R.layout.fragment_checkout
         return inflater.inflate(R.layout.fragment_checkout, container, false)
     }
 
@@ -55,14 +54,16 @@ class CheckoutFragment : Fragment() {
         buttonBayar = view.findViewById(R.id.btnBayarCt)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        // Menggunakan data checkoutList yang sudah dimuat di onCreate
         recyclerView.adapter = CheckoutAdapter(checkoutList)
 
         hitungTotal()
 
+        // --- PEMBARUAN FUNGSI: Panggil proses notifikasi sebelum navigasi ---
         buttonBayar.setOnClickListener {
+            prosesPembayaranDanNotifikasi()
             pindahKeStatusPembayaran()
         }
+        // -----------------------------------------------------------------
     }
 
     private fun hitungTotal() {
@@ -75,6 +76,21 @@ class CheckoutFragment : Fragment() {
         subtotalText.text = rupiah.format(subtotal)
         totalText.text = rupiah.format(total) // Ini adalah total akhir yang harus dibayar
     }
+
+    // --- FUNGSI BARU: Untuk membuat notifikasi dan menyimpannya ---
+    private fun prosesPembayaranDanNotifikasi() {
+        val totalItems = checkoutList.sumOf { it.quantity }
+
+        val newNotification = NotificationItem(
+            title = "Pesanan Berhasil Dibuat",
+            message = "Pesanan Anda sebanyak $totalItems item berhasil diproses. Cek status di halaman Riwayat Pesanan.",
+            type = NotificationType.ORDER_SUCCESS
+        )
+
+        // Simpan notifikasi ke NotificationManager (agar bisa dibaca NotificationsFragment)
+        NotificationManager.addNotification(newNotification)
+    }
+    // ---------------------------------------------
 
     private fun pindahKeStatusPembayaran() {
         val fragment = StatusFragment().apply {
