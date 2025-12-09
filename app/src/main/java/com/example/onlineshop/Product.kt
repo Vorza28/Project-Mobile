@@ -81,7 +81,111 @@ data class Product(
                     brand = "Ayam",
                     kategori = Kategori.Kaos,
                     deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
-                )
+                ),
+                Product(
+                    id = 7,
+                    name = "Sepatu Hitam Putih",
+                    price = 400000,
+                    imageUrl = R.drawable.sepatu_hitam_putih,
+                    brand = "Ayam",
+                    kategori = Kategori.Sepatu,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 8,
+                    name = "Sepatu Putih",
+                    price = 400000,
+                    imageUrl = R.drawable.sepatu_hitam_putih,
+                    brand = "Ayam",
+                    kategori = Kategori.Sepatu,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+
+                Product(
+                    id = 9,
+                    name = "Adidas Pink",
+                    price = 400000,
+                    imageUrl = R.drawable.adidas_pink,
+                    brand = "Ayam",
+                    kategori = Kategori.Sepatu,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 10,
+                    name = "Convers",
+                    price = 400000,
+                    imageUrl = R.drawable.covers,
+                    brand = "Ayam",
+                    kategori = Kategori.Sepatu,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 11,
+                    name = "Sepatu Putih",
+                    price = 400000,
+                    imageUrl = R.drawable.sepatu_putih,
+                    brand = "Ayam",
+                    kategori = Kategori.Sepatu,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 12,
+                    name = "Jacket Jeans",
+                    price = 400000,
+                    imageUrl = R.drawable.jaket_jeans,
+                    brand = "Ayam",
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 13,
+                    name = "Jacket Kulit",
+                    price = 400000,
+                    imageUrl = R.drawable.jaket_kulit,
+                    brand = "Ayam",
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 13,
+                    name = "Jacket Crop",
+                    price = 400000,
+                    imageUrl = R.drawable.croped_jaket,
+                    brand = "Ayam",
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+                Product(
+                    id = 13,
+                    name = "Broklyn Hoodie",
+                    price = 400000,
+                    imageUrl = R.drawable.broklyn_jaket,
+                    brand = "Ayam",
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+
+                Product(
+                    id = 13,
+                    name = "Jacket Kulit",
+                    price = 400000,
+                    imageUrl = R.drawable.jaketkulit,
+                    brand = "Ayam",
+                    kategori = Kategori.Jaket,
+                    deskripsi = "Kaos putih ini dibuat dari bahan cotton lembut yang nyaman dipakai sepanjang hari. Desainnya simpel dan timeless sehingga mudah dipadukan dengan berbagai outfit. Cocok untuk dipakai kuliah, kerja, ataupun santai."
+                ),
+
+
+
+
+
+
+
+
+
+
+
+
             )
         }
     }
