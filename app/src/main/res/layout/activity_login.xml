@@ -8,12 +8,11 @@
     android:background="@android:color/white"
     tools:context=".LoginActivity">
 
-    <!-- Header Aplikasi -->
     <TextView
         android:id="@+id/namaAplikasi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nama Aplikasi"
+        android:text="P L S"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="64dp"
@@ -21,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Sub Judul (Login) -->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -44,7 +42,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Input Email -->
     <EditText
         android:id="@+id/editTextEmailAddress"
         android:layout_width="0dp"
@@ -61,7 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Input Password -->
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="0dp"
@@ -76,7 +72,6 @@
         app:layout_constraintStart_toStartOf="@+id/editTextEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddress" />
 
-    <!-- Tombol Masuk -->
     <Button
         android:id="@+id/buttonMasuk"
         android:layout_width="0dp"
@@ -88,33 +83,7 @@
         app:layout_constraintStart_toStartOf="@+id/editTextPassword"
         app:layout_constraintEnd_toEndOf="@+id/editTextPassword" />
 
-    <!-- Pembatas "or" -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ATAU"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMasuk"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tombol Google Login -->
-    <ImageButton
-        android:id="@+id/googleButton"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:src="@drawable/google_icon"
-        android:scaleType="fitCenter"
-        android:padding="8dp"
-        android:background="@drawable/rounded_gray_background"
-        android:contentDescription="Masuk dengan Google"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/buttonMasuk"
-        app:layout_constraintEnd_toEndOf="@+id/buttonMasuk" />
-
-    <!-- Kebijakan Layanan/Privasi (diletakkan di bawah) -->
     <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"

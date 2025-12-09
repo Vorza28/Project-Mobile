@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
     // Anda dapat mengganti ini dengan kredensial yang valid dari database/API
     private val VALID_EMAIL = "user@example.com"
-    private val VALID_PASSWORD = "password123"
+    private val VALID_PASSWORD = "123"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +32,6 @@ class LoginActivity : AppCompatActivity() {
         masukButton.setOnClickListener {
             handleLogin()
         }
-
-        // Anda juga bisa menambahkan listener untuk tombol Google
-        // findViewById<ImageButton>(R.id.googleButton).setOnClickListener {
-        //     Toast.makeText(this, "Melakukan Login dengan Google...", Toast.LENGTH_SHORT).show()
-        // }
     }
 
     /**
