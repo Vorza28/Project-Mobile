@@ -26,53 +26,66 @@ class EditProfileFragment : Fragment() {
 
         val userPref = UserPref(requireContext())
 
+        // Ambil ID dari XML
         val edtNama = view.findViewById<EditText>(R.id.edtNama)
-        val edtUsername = view.findViewById<EditText>(R.id.edtUsername)   // ← tambahan
+        val edtUsername = view.findViewById<EditText>(R.id.edtUsername)
         val edtEmail = view.findViewById<EditText>(R.id.edtEmail)
         val edtNoHp = view.findViewById<EditText>(R.id.edtNoHp)
         val edtAlamat = view.findViewById<EditText>(R.id.edtAlamat)
         val edtKota = view.findViewById<EditText>(R.id.edtKota)
         val edtKodePos = view.findViewById<EditText>(R.id.edtKodePos)
 
-        // Isi data lama
+        val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
+        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
+        val btnBack = view.findViewById<ImageView>(R.id.btnBack)
+
+        // === TAMPILKAN DATA TERBARU KE FORM ===
         edtNama.setText(userPref.getUserName())
-        edtUsername.setText(userPref.getUsername())   // ← tambahan
+        edtUsername.setText(userPref.getUsername())
         edtEmail.setText(userPref.getUserEmail())
         edtNoHp.setText(userPref.getUserPhone())
         edtAlamat.setText(userPref.getUserAddress())
         edtKota.setText(userPref.getUserCity())
         edtKodePos.setText(userPref.getPostal())
 
-        val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
-        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
-
-        val btnBack = view.findViewById<ImageView>(R.id.btnBack)
+        // === BUTTON BACK ===
         btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
+        // === BUTTON SIMPAN ===
         btnSimpan.setOnClickListener {
 
             val nama = edtNama.text.toString()
-            val username = edtUsername.text.toString()   // ← tambahan
+            val username = edtUsername.text.toString()
             val email = edtEmail.text.toString()
             val noHp = edtNoHp.text.toString()
             val alamat = edtAlamat.text.toString()
             val kota = edtKota.text.toString()
             val kodePos = edtKodePos.text.toString()
 
+            // Validasi minimal
             if (nama.isEmpty() || username.isEmpty() || email.isEmpty()) {
                 Toast.makeText(requireContext(), "Harap isi data dengan lengkap", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // SIMPAN
-            userPref.saveUser(nama, username, email, noHp, alamat, kota, kodePos)
+            // === SIMPAN KE UserPref ===
+            userPref.saveUser(
+                name = nama,
+                username = username,
+                email = email,
+                phone = noHp,
+                address = alamat,
+                city = kota,
+                postal = kodePos
+            )
 
             Toast.makeText(requireContext(), "Perubahan Disimpan!", Toast.LENGTH_SHORT).show()
             findNavController().navigateUp()
         }
 
+        // === BUTTON LOGOUT ===
         btnLogout.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
