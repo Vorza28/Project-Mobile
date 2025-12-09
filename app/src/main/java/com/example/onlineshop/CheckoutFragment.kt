@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
@@ -17,15 +16,33 @@ import java.util.Locale
 class CheckoutFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var totalHargaText: TextView
-    private lateinit var buttonPesan: Button
+    private lateinit var subtotalText: TextView
+    private lateinit var totalText: TextView
+    private lateinit var buttonBayar: Button
 
+    // Data item checkout akan dimuat di sini dari Arguments
     private var checkoutList: ArrayList<Product> = arrayListOf()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Ambil data dari Arguments yang disiapkan oleh Activity penampung (OrderActivity)
+        arguments?.let {
+            checkoutList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.getParcelableArrayList("checkout_item", Product::class.java) ?: arrayListOf()
+            } else {
+                @Suppress("DEPRECATION")
+                it.getParcelableArrayList<Product>("checkout_item") ?: arrayListOf()
+            }
+        }
+        // Catatan: Logika penanganan error data kosong dipindahkan ke OrderActivity.
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Pastikan Anda memiliki R.layout.fragment_checkout
         return inflater.inflate(R.layout.fragment_checkout, container, false)
     }
 
@@ -33,34 +50,43 @@ class CheckoutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.rvCheckout)
-        totalHargaText = view.findViewById(R.id.textSubtotalharga)
-        buttonPesan = view.findViewById(R.id.buttonPesan)
+        subtotalText = view.findViewById(R.id.textSubtotal)
+        totalText = view.findViewById(R.id.textSubtotalharga)
+        buttonBayar = view.findViewById(R.id.btnBayarCt)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        // Ambil data dari DeskripsiFragment
-        arguments?.let {
-            checkoutList = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.getParcelableArrayList("checkout_item", Product::class.java) ?: arrayListOf()
-            } else {
-                @Suppress("DEPRECATION")
-                it.getParcelableArrayList("checkout_item") ?: arrayListOf()
-            }
-        }
-
+        // Menggunakan data checkoutList yang sudah dimuat di onCreate
         recyclerView.adapter = CheckoutAdapter(checkoutList)
 
         hitungTotal()
 
-        // ======== AKSI TOMBOL PESAN =========
-        buttonPesan.setOnClickListener {
-            findNavController().navigate(R.id.action_checkout_to_status)
+        buttonBayar.setOnClickListener {
+            pindahKeStatusPembayaran()
         }
     }
 
     private fun hitungTotal() {
-        val total = checkoutList.sumOf { it.price.toDouble() }
-        val formatRupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        totalHargaText.text = formatRupiah.format(total)
+        // Menghitung subtotal berdasarkan harga item * quantity
+        val subtotal = checkoutList.sumOf { it.price.toDouble() * it.quantity }
+        val biayaAdmin = 200.0 // biaya admin
+        val total = subtotal + biayaAdmin
+
+        val rupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
+        subtotalText.text = rupiah.format(subtotal)
+        totalText.text = rupiah.format(total) // Ini adalah total akhir yang harus dibayar
+    }
+
+    private fun pindahKeStatusPembayaran() {
+        val fragment = StatusFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArrayList("checkout_item", checkoutList)
+            }
+        }
+
+        // Navigasi ke StatusFragment dalam Activity yang sama (OrderActivity)
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.order_fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

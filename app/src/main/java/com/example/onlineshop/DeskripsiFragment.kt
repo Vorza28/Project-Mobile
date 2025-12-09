@@ -60,7 +60,6 @@ class DeskripsiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Bind view
         productImageView = view.findViewById(R.id.imageDeskripsi)
         brandTextView = view.findViewById(R.id.textView6)
         nameTextView = view.findViewById(R.id.textViewNamaProduk)
@@ -83,22 +82,27 @@ class DeskripsiFragment : Fragment() {
     }
 
     private fun displayProductData() {
-        if (product == null) {
-            Toast.makeText(requireContext(), "Produk tidak ditemukan!", Toast.LENGTH_SHORT).show()
-            return
-        }
+        val p = product ?: return
 
+        productImageView.setImageResource(p.imageUrl)
+        brandTextView.text = p.brand
+        nameTextView.text = p.name
         productImageView.setImageResource(product!!.imageUrl)
         brandTextView.text = product!!.brand
         nameTextView.text = product!!.name
         deskripsiDetailView.text = product!!.deskripsi
 
         val formatRupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        priceTextView.text = formatRupiah.format(product!!.price.toDouble())
+        priceTextView.text = formatRupiah.format(p.price.toDouble())
     }
     private fun navigateToCheckout(product: Product) {
-        // Buat ArrayList supaya CheckoutFragment bisa membaca
-        val list = arrayListOf(product)
+
+        // -------------------------------------------
+        // Pastikan product yang dikirim memiliki quantity = 1
+        // -------------------------------------------
+        val checkoutProduct = product.copy(quantity = 1)
+
+        val list = arrayListOf(checkoutProduct)
 
         val checkoutFragment = CheckoutFragment().apply {
             arguments = Bundle().apply {

@@ -81,12 +81,12 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/btnBayar"
+            app:layout_constraintBottom_toTopOf="@id/btnCheckout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <Button
-            android:id="@+id/btnBayar"
+            android:id="@+id/btnCheckout"
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginStart="16dp"

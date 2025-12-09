@@ -180,7 +180,8 @@
                 android:id="@+id/rvCheckout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"/>
+                android:paddingVertical="12dp"
+                tools:listitem="@layout/item_checkout"/>
 
             <!-- SUBTOTAL -->
             <LinearLayout
@@ -194,7 +195,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Subtotal(0)"/>
+                    android:text="Subtotal"/>
 
                 <TextView
                     android:id="@+id/textSubtotalharga"
@@ -274,14 +275,20 @@
                     android:layout_weight="1"
                     android:text="0"/>
             </LinearLayout>
-            <Button
-                android:id="@+id/buttonPesan"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:text="Buat Pesanan"
-                android:backgroundTint="@color/black" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnBayarCt"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:backgroundTint="#000000"
+        android:text="BAYAR"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
