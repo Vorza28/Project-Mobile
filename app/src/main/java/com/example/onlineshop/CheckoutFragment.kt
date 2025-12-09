@@ -49,8 +49,8 @@ class CheckoutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.rvCheckout)
-        subtotalText = view.findViewById(R.id.textSubtotal)
-        totalText = view.findViewById(R.id.textSubtotalharga)
+        subtotalText = view.findViewById(R.id.textSubtotalharga)
+        totalText = view.findViewById(R.id.textTotalSemuaBelanja)
         buttonBayar = view.findViewById(R.id.btnBayarCt)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -58,7 +58,6 @@ class CheckoutFragment : Fragment() {
 
         hitungTotal()
 
-        // --- PEMBARUAN FUNGSI: Panggil proses notifikasi sebelum navigasi ---
         buttonBayar.setOnClickListener {
             prosesPembayaranDanNotifikasi()
             pindahKeStatusPembayaran()
