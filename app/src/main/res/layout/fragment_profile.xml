@@ -70,6 +70,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
+            <!-- TOMBOL LOGOUT (TAMBAHAN TANPA MENGUBAH YANG LAIN) -->
+            <Button
+                android:id="@+id/btnLogoutProfile"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:text="Logout"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="#C62828"
+                android:textColor="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@id/button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

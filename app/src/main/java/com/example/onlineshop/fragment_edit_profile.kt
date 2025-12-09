@@ -64,13 +64,11 @@ class EditProfileFragment : Fragment() {
             val kota = edtKota.text.toString()
             val kodePos = edtKodePos.text.toString()
 
-            // Validasi minimal
             if (nama.isEmpty() || username.isEmpty() || email.isEmpty()) {
                 Toast.makeText(requireContext(), "Harap isi data dengan lengkap", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // === SIMPAN KE UserPref ===
             userPref.saveUser(
                 name = nama,
                 username = username,
@@ -85,7 +83,7 @@ class EditProfileFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        // === BUTTON LOGOUT ===
+        // === BUTTON LOGOUT (TETAP ADA, TIDAK DIHAPUS SESUAI PERMINTAAN) ===
         btnLogout.setOnClickListener {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
