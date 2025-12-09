@@ -10,7 +10,6 @@
         android:layout_height="wrap_content">
 
         <!-- FOTO PROFIL -->
-
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="37dp"
@@ -48,6 +47,17 @@
             android:layout_height="wrap_content"
             android:hint="Nama Lengkap"
             android:layout_marginTop="24dp"/>
+
+
+
+        <!-- USERNAME (TAMBAHAN BARU) -->
+        <EditText
+            android:id="@+id/edtUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:layout_marginTop="12dp" />
+
 
         <!-- EMAIL -->
         <EditText
@@ -94,13 +104,12 @@
             android:id="@+id/btnSimpan"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="Simpan Perubahan"
+            android:layout_marginTop="28dp"
             android:backgroundTint="@color/black"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="28dp"/>
+            android:text="Simpan Perubahan"
+            android:textColor="@android:color/white" />
 
-
-        <!-- Button Logout (tambahan baru) -->
+        <!-- Button Logout -->
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
