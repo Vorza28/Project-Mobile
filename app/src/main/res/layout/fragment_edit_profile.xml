@@ -9,14 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- FOTO PROFIL -->
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="37dp"
             android:layout_height="35dp"
             android:layout_margin="16dp"
             android:clickable="true"
-            android:contentDescription="Kembali"
             android:focusable="true"
             android:src="@drawable/ic_arrow_back" />
 
@@ -31,16 +29,6 @@
             android:scaleType="centerCrop"
             android:clipToOutline="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ubah Foto"
-            android:textColor="@color/black"
-            android:paddingTop="8dp"
-            android:textSize="14sp"
-            android:layout_gravity="center"/>
-
-        <!-- NAMA -->
         <EditText
             android:id="@+id/edtNama"
             android:layout_width="match_parent"
@@ -48,9 +36,6 @@
             android:hint="Nama Lengkap"
             android:layout_marginTop="24dp"/>
 
-
-
-        <!-- USERNAME (TAMBAHAN BARU) -->
         <EditText
             android:id="@+id/edtUsername"
             android:layout_width="match_parent"
@@ -58,8 +43,6 @@
             android:hint="Username"
             android:layout_marginTop="12dp" />
 
-
-        <!-- EMAIL -->
         <EditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
@@ -67,7 +50,6 @@
             android:hint="Email"
             android:inputType="textEmailAddress" />
 
-        <!-- NOMOR HP -->
         <EditText
             android:id="@+id/edtNoHp"
             android:layout_width="match_parent"
@@ -75,7 +57,6 @@
             android:hint="Nomor Handphone"
             android:inputType="phone" />
 
-        <!-- ALAMAT -->
         <EditText
             android:id="@+id/edtAlamat"
             android:layout_width="match_parent"
@@ -84,14 +65,12 @@
             android:inputType="textMultiLine"
             android:minLines="2" />
 
-        <!-- KOTA -->
         <EditText
             android:id="@+id/edtKota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Kota" />
 
-        <!-- KODE POS -->
         <EditText
             android:id="@+id/edtKodePos"
             android:layout_width="match_parent"
@@ -99,7 +78,6 @@
             android:hint="Kode Pos"
             android:inputType="number" />
 
-        <!-- TOMBOL SIMPAN -->
         <Button
             android:id="@+id/btnSimpan"
             android:layout_width="match_parent"
@@ -109,15 +87,6 @@
             android:text="Simpan Perubahan"
             android:textColor="@android:color/white" />
 
-        <!-- Button Logout -->
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#C62828"
-            android:text="Logout"
-            android:textColor="@android:color/white" />
 
     </LinearLayout>
 </ScrollView>
