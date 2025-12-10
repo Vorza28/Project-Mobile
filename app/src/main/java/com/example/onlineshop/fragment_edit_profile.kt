@@ -1,6 +1,5 @@
 package com.example.onlineshop
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +25,6 @@ class EditProfileFragment : Fragment() {
 
         val userPref = UserPref(requireContext())
 
-        // Ambil ID dari XML
         val edtNama = view.findViewById<EditText>(R.id.edtNama)
         val edtUsername = view.findViewById<EditText>(R.id.edtUsername)
         val edtEmail = view.findViewById<EditText>(R.id.edtEmail)
@@ -36,10 +34,8 @@ class EditProfileFragment : Fragment() {
         val edtKodePos = view.findViewById<EditText>(R.id.edtKodePos)
 
         val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
-        val btnLogout = view.findViewById<Button>(R.id.btnLogout)
         val btnBack = view.findViewById<ImageView>(R.id.btnBack)
 
-        // === TAMPILKAN DATA TERBARU KE FORM ===
         edtNama.setText(userPref.getUserName())
         edtUsername.setText(userPref.getUsername())
         edtEmail.setText(userPref.getUserEmail())
@@ -48,12 +44,10 @@ class EditProfileFragment : Fragment() {
         edtKota.setText(userPref.getUserCity())
         edtKodePos.setText(userPref.getPostal())
 
-        // === BUTTON BACK ===
         btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        // === BUTTON SIMPAN ===
         btnSimpan.setOnClickListener {
 
             val nama = edtNama.text.toString()
@@ -83,11 +77,6 @@ class EditProfileFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        // === BUTTON LOGOUT (TETAP ADA, TIDAK DIHAPUS SESUAI PERMINTAAN) ===
-        btnLogout.setOnClickListener {
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
+        // BAGIAN LOGOUT SUDAH DIHAPUS
     }
 }
