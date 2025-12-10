@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".OrderActivity">
 
-    <!-- FrameLayout ini akan menampung DeskripsiFragment, CheckoutFragment, dan StatusFragment -->
     <FrameLayout
         android:id="@+id/order_fragment_container"
         android:layout_width="match_parent"

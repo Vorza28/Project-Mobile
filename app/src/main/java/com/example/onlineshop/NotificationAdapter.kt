@@ -17,8 +17,6 @@ class NotificationAdapter(
         val icon: ImageView = itemView.findViewById(R.id.notification_icon)
         val title: TextView = itemView.findViewById(R.id.notification_title)
         val time: TextView = itemView.findViewById(R.id.notification_time)
-        // Jika ada pesan notifikasi yang lebih panjang:
-        // val message: TextView = itemView.findViewById(R.id.notification_message)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -33,7 +31,6 @@ class NotificationAdapter(
         val item = items[position]
 
         holder.title.text = item.title
-        // holder.message.text = item.message // jika ditambahkan ke item_notification.xml
 
         // Format Waktu
         val dateFormat = SimpleDateFormat("dd MMM, HH:mm", Locale("in", "ID"))

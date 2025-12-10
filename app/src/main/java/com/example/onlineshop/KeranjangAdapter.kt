@@ -71,9 +71,6 @@ class KeranjangAdapter(
                 listener.onCartChanged()
             }
         }
-
-        // (Opsional) jika mau menghapus item saat checkbox di-uncheck dan quantity = 0, dsb.
-        // Untuk saat ini kita hanya update quantity / checked.
     }
 
     /** Memungkinkan fragment memperbarui seluruh list jika diperlukan */

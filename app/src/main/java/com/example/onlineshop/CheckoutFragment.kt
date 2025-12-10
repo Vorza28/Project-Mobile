@@ -62,7 +62,6 @@ class CheckoutFragment : Fragment() {
             prosesPembayaranDanNotifikasi()
             pindahKeStatusPembayaran()
         }
-        // -----------------------------------------------------------------
     }
 
     private fun hitungTotal() {
@@ -89,7 +88,6 @@ class CheckoutFragment : Fragment() {
         // Simpan notifikasi ke NotificationManager (agar bisa dibaca NotificationsFragment)
         NotificationManager.addNotification(newNotification)
     }
-    // ---------------------------------------------
 
     private fun pindahKeStatusPembayaran() {
         val fragment = StatusFragment().apply {

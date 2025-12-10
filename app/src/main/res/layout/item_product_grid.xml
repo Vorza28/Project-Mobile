@@ -73,22 +73,6 @@
             app:layout_constraintTop_toBottomOf="@id/product_name"
             tools:text="Rp.10.000" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/deskripsi_product"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            android:layout_marginTop="4dp"-->
-<!--            android:maxLines="3"-->
-<!--            android:ellipsize="end"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/product_price"-->
-<!--            tools:text="Ini contoh deskripsi produk untuk preview." />-->
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
