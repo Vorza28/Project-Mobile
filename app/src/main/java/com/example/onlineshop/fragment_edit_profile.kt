@@ -24,7 +24,6 @@ class EditProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val userPref = UserPref(requireContext())
-
         val edtNama = view.findViewById<EditText>(R.id.edtNama)
         val edtUsername = view.findViewById<EditText>(R.id.edtUsername)
         val edtEmail = view.findViewById<EditText>(R.id.edtEmail)
@@ -34,7 +33,7 @@ class EditProfileFragment : Fragment() {
         val edtKodePos = view.findViewById<EditText>(R.id.edtKodePos)
 
         val btnSimpan = view.findViewById<Button>(R.id.btnSimpan)
-        val btnBack = view.findViewById<ImageView>(R.id.btnBack)
+        val btnBack = view.findViewById<ImageView>(R.id.btnBack)//mengambil dari xml nya
 
         edtNama.setText(userPref.getUserName())
         edtUsername.setText(userPref.getUsername())
@@ -56,12 +55,12 @@ class EditProfileFragment : Fragment() {
             val noHp = edtNoHp.text.toString()
             val alamat = edtAlamat.text.toString()
             val kota = edtKota.text.toString()
-            val kodePos = edtKodePos.text.toString()
+            val kodePos = edtKodePos.text.toString()//menyimpan data
 
             if (nama.isEmpty() || username.isEmpty() || email.isEmpty()) {
                 Toast.makeText(requireContext(), "Harap isi data dengan lengkap", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
+            }//untuk memberi pemberitahuan jika data belum diisi dengan lengkap
 
             userPref.saveUser(
                 name = nama,
@@ -71,12 +70,12 @@ class EditProfileFragment : Fragment() {
                 address = alamat,
                 city = kota,
                 postal = kodePos
-            )
+            )//mengambil data dari parameter userPref
 
             Toast.makeText(requireContext(), "Perubahan Disimpan!", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
+            findNavController().navigateUp() //membuat notifikasi bahwa perubahan sudah disimpan
         }
 
-        // BAGIAN LOGOUT SUDAH DIHAPUS
+
     }
 }
